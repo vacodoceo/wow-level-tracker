@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "@material-ui/core/Link";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -51,10 +50,6 @@ const rows = [
   },
 ];
 
-function preventDefault(event: React.MouseEvent<HTMLElement>) {
-  event.preventDefault();
-}
-
 export default function Orders() {
   const classes = playersTableStyles();
   return (
@@ -82,11 +77,6 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
-      </div>
     </React.Fragment>
   );
 }
