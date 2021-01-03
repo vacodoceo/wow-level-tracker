@@ -2,13 +2,12 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 
 const config = {
-  apiKey: "AIzaSyBxH20xv52j6YJSontC3vBeoQznzll3oks",
-  authDomain: "wow-level-tracker.firebaseapp.com",
-  projectId: "wow-level-tracker",
-  storageBucket: "wow-level-tracker.appspot.com",
-  messagingSenderId: "650710393143",
-  appId: "1:650710393143:web:524fd7ed82756ca9573ab2",
-  measurementId: "G-79E791LVBN"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 firebase.initializeApp(config);
