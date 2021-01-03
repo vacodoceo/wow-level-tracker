@@ -12,7 +12,7 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 import { StyledTableCell, User } from "./index";
-import playersTableRowStyles from "./rowStyles";
+import playersTableStyles from "./styles";
 
 interface RowProps {
   user: User;
@@ -20,7 +20,7 @@ interface RowProps {
 
 const Row = ({ user }: RowProps) => {
   const [open, setOpen] = useState(false);
-  const classes = playersTableRowStyles();
+  const classes = playersTableStyles();
 
   return (
     <Fragment>
