@@ -11,8 +11,9 @@ import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
-import { StyledTableCell, User } from "./index";
+import { StyledTableCell } from "./index";
 import playersTableStyles from "./styles";
+import { User } from "../../firebase";
 
 interface RowProps {
   user: User;

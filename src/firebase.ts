@@ -12,5 +12,18 @@ const config = {
 
 firebase.initializeApp(config);
 
+interface Character {
+  name: string;
+  realm: string;
+  level: number | undefined;
+}
+
+export interface User {
+  id: string;
+  name: string;
+  lastName: string;
+  characters: Character[];
+}
+
 export const firestore = firebase.firestore();
 export default firebase;

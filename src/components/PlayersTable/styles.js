@@ -4,14 +4,13 @@ const playersTableStyles = makeStyles(theme => ({
   addCharacterContainer: {
     display: "flex",
     justifyContent: "flex-end",
-    padding: "16px 0"
+    padding: "16px 0 0",
+    "& > button": {
+      margin: theme.spacing(1)
+    }
   },
-  paper: {
-    position: "absolute",
-    padding: theme.spacing(2, 4, 3),
-    left: "50%",
-    top: "40%",
-    transform: "translate(-50%, -50%)"
+  dialogText: {
+    padding: 0
   },
   root: {
     "& > *": {

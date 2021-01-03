@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
-import Modal from "@material-ui/core/Modal";
+import Dialog from "@material-ui/core/Dialog";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -11,23 +11,14 @@ import TableRow from "@material-ui/core/TableRow";
 import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/core/styles";
 
-import { firestore } from "../../firebase";
+import { firestore, User } from "../../firebase";
 import playersTableStyles from "./styles";
 import CreateUser from "./createUser";
+import CreateCharacter from "./createCharacter";
 import Row from "./row";
 import Title from "../Title";
 
-interface Character {
-  name: string;
-  realm: string;
-  level: number | undefined;
-}
-
-export interface User {
-  name: string;
-  lastName: string;
-  characters: Character[];
-}
+type DialogMode = "character" | "user" | null;
 
 export const StyledTableCell = withStyles(theme => ({
   head: {
@@ -40,15 +31,15 @@ export const StyledTableCell = withStyles(theme => ({
 }))(TableCell);
 
 export default function Orders() {
-  const [values, loading, error] = useCollectionData<User>(
-    firestore.collection("users")
-  );
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [values] = useCollectionData<User>(firestore.collection("users"), {
+    idField: "id"
+  });
+  const [dialogMode, setDialogMode] = useState<DialogMode>(null);
 
   const classes = playersTableStyles();
   return (
     <Fragment>
-      <Title>Usuarios</Title>
+      <Title>Jugadores</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -71,16 +62,30 @@ export default function Orders() {
           variant="contained"
           color="secondary"
           size="small"
-          onClick={() => setModalOpen(true)}
+          onClick={() => setDialogMode("user")}
+          startIcon={<AddIcon />}
+        >
+          Añadir jugador
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          onClick={() => setDialogMode("character")}
           startIcon={<AddIcon />}
         >
           Añadir personaje
         </Button>
       </Container>
 
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-        <CreateUser />
-      </Modal>
+      <Dialog open={!!dialogMode} onClose={() => setDialogMode(null)} fullWidth>
+        {dialogMode === "user" && (
+          <CreateUser closeDialog={() => setDialogMode(null)} />
+        )}
+        {dialogMode === "character" && (
+          <CreateCharacter closeDialog={() => setDialogMode(null)} />
+        )}
+      </Dialog>
     </Fragment>
   );
 }
