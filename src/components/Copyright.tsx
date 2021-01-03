@@ -6,12 +6,7 @@ const Copyright = () => {
   return (
     <Box pt={4}>
       <Typography variant="body2" color="textSecondary" align="center">
-        <Link color="inherit" href="https://material-ui.com/">
-          WoW Level Tracker
-        </Link>
-        &emsp;
-        {new Date().getFullYear()}
-        &emsp; by &emsp;
+        WoW Level Tracker by{" "}
         <Link variant="overline" href="https://github.com/vacodoceo/">
           Verner Codoceo
         </Link>
