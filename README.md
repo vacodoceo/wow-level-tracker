@@ -1,3 +1,5 @@
+![Deploy to Firebase Hosting on merge](https://github.com/vacodoceo/wow-level-tracker/workflows/Deploy%20to%20Firebase%20Hosting%20on%20merge/badge.svg)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
