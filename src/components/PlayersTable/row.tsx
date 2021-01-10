@@ -36,8 +36,9 @@ const Row = ({ user }: RowProps) => {
           </IconButton>
         </StyledTableCell>
         <StyledTableCell component="th" scope="row">
-          {user.name}
+          {user.email}
         </StyledTableCell>
+        <StyledTableCell>{user.name}</StyledTableCell>
         <StyledTableCell>{user.lastName}</StyledTableCell>
         <StyledTableCell>{}</StyledTableCell>
         <StyledTableCell align="right">{}</StyledTableCell>

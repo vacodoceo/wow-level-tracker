@@ -1,12 +1,16 @@
 import { useState } from "react";
-import Button from "@material-ui/core/Button";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
+import {
+  Button,
+  CircularProgress,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  Grid,
+  TextField
+} from "@material-ui/core";
 
+import { firestore } from "../../firebase";
 import playersTableStyles from "./styles";
 
 interface CreateUserProps {
@@ -14,12 +18,15 @@ interface CreateUserProps {
 }
 
 const CreateUser = ({ closeDialog }: CreateUserProps) => {
+  const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [error, setError] = useState({
+    email: false,
     name: false,
     lastName: false
   });
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const handleCancelDialog = () => {
     closeDialog();
@@ -28,10 +35,28 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newError = {
+      email: !email,
       name: !name,
       lastName: !lastName
     };
     setError(newError);
+
+    const validInput = Object.values(newError).every(error => !error);
+    if (validInput) {
+      setSubmitting(true);
+      firestore
+        .collection("users")
+        .doc(email)
+        .set({
+          name,
+          lastName,
+          characters: []
+        })
+        .then(() => {
+          setSubmitting(false);
+          closeDialog();
+        });
+    }
   };
 
   const classes = playersTableStyles();
@@ -43,6 +68,18 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
           Ingresa la información del jugador
         </DialogContentText>
         <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              size="small"
+              error={error.email}
+              id="email"
+              value={email}
+              label="Correo de la cuenta*"
+              onChange={e => setEmail(e.target.value)}
+            />
+          </Grid>
           <Grid item xs={6}>
             <TextField
               fullWidth
@@ -73,7 +110,10 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
         <Button onClick={handleCancelDialog} color="primary">
           Cancelar
         </Button>
-        <Button type="submit" color="primary">
+        <Button type="submit" color="primary" disabled={submitting}>
+          {submitting && (
+            <CircularProgress size={20} className={classes.loadingIcon} />
+          )}
           Añadir
         </Button>
       </DialogActions>

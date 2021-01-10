@@ -1,13 +1,15 @@
 import { Fragment, useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
-import Dialog from "@material-ui/core/Dialog";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import {
+  Button,
+  Container,
+  Dialog,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow
+} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -32,7 +34,7 @@ export const StyledTableCell = withStyles(theme => ({
 
 export default function Orders() {
   const [values] = useCollectionData<User>(firestore.collection("users"), {
-    idField: "id"
+    idField: "email"
   });
   const [dialogMode, setDialogMode] = useState<DialogMode>(null);
 
@@ -44,6 +46,7 @@ export default function Orders() {
         <TableHead>
           <TableRow>
             <StyledTableCell />
+            <StyledTableCell>Correo</StyledTableCell>
             <StyledTableCell>Nombre</StyledTableCell>
             <StyledTableCell>Apellido</StyledTableCell>
             <StyledTableCell>Fecha de término</StyledTableCell>

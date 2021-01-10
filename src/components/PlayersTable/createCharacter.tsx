@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import {
+  Button,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  Grid,
+  TextField
+} from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Button from "@material-ui/core/Button";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 
 import { firestore, User } from "../../firebase";
 import realms, { Realm } from "../../constants/realms";
@@ -31,7 +33,7 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
     realm: false
   });
   const [users] = useCollectionData<User>(firestore.collection("users"), {
-    idField: "id"
+    idField: "email"
   });
 
   const handleCancelDialog = () => {
@@ -46,6 +48,11 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
       realm: !realm
     };
     setError(newError);
+
+    const validInput = Object.values(newError).every(error => !error);
+    if (validInput) {
+      firestore.collection("users").doc(owner?.email);
+    }
   };
 
   const classes = playersTableStyles();
@@ -73,8 +80,8 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
                   inputProps={{
                     ...params.inputProps,
                     form: {
-                      autocomplete: "off"
-                    } // disable autocomplete and autofill
+                      autocomplete: "off" // disable autocomplete and autofill
+                    }
                   }}
                 />
               )}

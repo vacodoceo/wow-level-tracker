@@ -12,6 +12,9 @@ const playersTableStyles = makeStyles(theme => ({
   dialogText: {
     padding: 0
   },
+  loadingIcon: {
+    marginRight: theme.spacing(1)
+  },
   root: {
     "& > *": {
       borderBottom: "unset"
