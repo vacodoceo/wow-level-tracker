@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import {
   Button,
+  CircularProgress,
   DialogTitle,
   DialogActions,
   DialogContent,
@@ -11,7 +12,7 @@ import {
 } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-import { firestore, User } from "../../firebase";
+import firebase, { firestore, Character, User } from "../../firebase";
 import realms, { Realm } from "../../constants/realms";
 import playersTableStyles from "./styles";
 
@@ -35,6 +36,7 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
   const [users] = useCollectionData<User>(firestore.collection("users"), {
     idField: "email"
   });
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const handleCancelDialog = () => {
     closeDialog();
@@ -51,7 +53,22 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
 
     const validInput = Object.values(newError).every(error => !error);
     if (validInput) {
-      firestore.collection("users").doc(owner?.email);
+      setSubmitting(true);
+      const newCharacter: Character = {
+        name,
+        realm: realm!.name,
+        level: null
+      };
+      firestore
+        .collection("users")
+        .doc(owner?.email)
+        .update({
+          characters: firebase.firestore.FieldValue.arrayUnion(newCharacter)
+        })
+        .then(() => {
+          setSubmitting(false);
+          closeDialog();
+        });
     }
   };
 
@@ -70,12 +87,12 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
               options={users || []}
               size="small"
               autoHighlight
-              getOptionLabel={option => `${option.name} ${option.lastName}`}
+              getOptionLabel={option => option.email}
               renderInput={params => (
                 <TextField
                   {...params}
                   error={error.owner}
-                  label="Dueño del personaje*"
+                  label="Cuenta del personaje*"
                   variant="outlined"
                   inputProps={{
                     ...params.inputProps,
@@ -133,6 +150,9 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
           Cancelar
         </Button>
         <Button type="submit" color="primary">
+          {submitting && (
+            <CircularProgress size={20} className={classes.loadingIcon} />
+          )}
           Añadir
         </Button>
       </DialogActions>

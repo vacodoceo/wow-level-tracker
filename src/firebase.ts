@@ -12,10 +12,10 @@ const config = {
 
 firebase.initializeApp(config);
 
-interface Character {
+export interface Character {
   name: string;
   realm: string;
-  level: number | undefined;
+  level: number | null;
 }
 
 export interface User {
