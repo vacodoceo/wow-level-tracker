@@ -10,7 +10,7 @@ import {
   TextField
 } from "@material-ui/core";
 
-import { firestore } from "../../firebase";
+import firebase, { firestore } from "../../firebase";
 import playersTableStyles from "./styles";
 
 interface CreateUserProps {
@@ -50,7 +50,8 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
         .set({
           name,
           lastName,
-          characters: []
+          characters: [],
+          updatedAt: firebase.firestore.Timestamp.now()
         })
         .then(() => {
           setSubmitting(false);

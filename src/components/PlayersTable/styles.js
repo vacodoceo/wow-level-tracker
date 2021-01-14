@@ -22,6 +22,13 @@ const playersTableStyles = makeStyles(theme => ({
   },
   seeMore: {
     marginTop: theme.spacing(3)
+  },
+  tableHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    "& button": {
+      height: "50%"
+    }
   }
 }));
 

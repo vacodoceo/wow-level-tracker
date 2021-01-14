@@ -56,7 +56,7 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
       setSubmitting(true);
       const newCharacter: Character = {
         name,
-        realm: realm!.name,
+        realm: realm!,
         level: null
       };
       firestore

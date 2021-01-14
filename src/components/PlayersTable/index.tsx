@@ -11,9 +11,10 @@ import {
   TableRow
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
+import RefreshIcon from "@material-ui/icons/Refresh";
 import { withStyles } from "@material-ui/core/styles";
 
-import { firestore, User } from "../../firebase";
+import { firestore, functions, User } from "../../firebase";
 import playersTableStyles from "./styles";
 import CreateUser from "./createUser";
 import CreateCharacter from "./createCharacter";
@@ -38,10 +39,24 @@ export default function Orders() {
   });
   const [dialogMode, setDialogMode] = useState<DialogMode>(null);
 
+  const updateCharactersInfo = functions.httpsCallable("updateCharactersInfo");
+
   const classes = playersTableStyles();
   return (
     <Fragment>
-      <Title>Jugadores</Title>
+      <Container className={classes.tableHeader}>
+        <Title>Jugadores</Title>
+        <Button
+          variant="outlined"
+          color="primary"
+          size="small"
+          endIcon={<RefreshIcon />}
+          onClick={() => updateCharactersInfo()}
+        >
+          Actualizar
+        </Button>
+      </Container>
+
       <Table size="small">
         <TableHead>
           <TableRow>

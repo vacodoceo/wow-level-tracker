@@ -65,11 +65,11 @@ const Row = ({ user }: RowProps) => {
                 </TableHead>
                 <TableBody>
                   {user.characters.map(character => (
-                    <TableRow key={`${character.name}-${character.realm}`}>
+                    <TableRow key={`${character.name}-${character.realm.slug}`}>
                       <StyledTableCell component="th" scope="row">
                         {character.name}
                       </StyledTableCell>
-                      <StyledTableCell>{character.realm}</StyledTableCell>
+                      <StyledTableCell>{character.realm.name}</StyledTableCell>
                       <StyledTableCell align="right">
                         {character.level}
                       </StyledTableCell>

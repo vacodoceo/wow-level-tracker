@@ -1,5 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/functions";
+import { Realm } from "./constants/realms";
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,7 +16,7 @@ firebase.initializeApp(config);
 
 export interface Character {
   name: string;
-  realm: string;
+  realm: Realm;
   level: number | null;
 }
 
@@ -26,4 +28,5 @@ export interface User {
 }
 
 export const firestore = firebase.firestore();
+export const functions = firebase.functions();
 export default firebase;
