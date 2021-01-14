@@ -49,7 +49,6 @@ export default function Orders() {
             <StyledTableCell>Correo</StyledTableCell>
             <StyledTableCell>Nombre</StyledTableCell>
             <StyledTableCell>Apellido</StyledTableCell>
-            <StyledTableCell>Fecha de término</StyledTableCell>
             <StyledTableCell align="right">Personaje más alto</StyledTableCell>
           </TableRow>
         </TableHead>

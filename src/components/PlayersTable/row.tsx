@@ -23,6 +23,11 @@ const Row = ({ user }: RowProps) => {
   const [open, setOpen] = useState(false);
   const classes = playersTableStyles();
 
+  const maxCharacterLevel = Math.max(
+    ...user.characters.map(character => character.level || 1),
+    1
+  );
+
   return (
     <Fragment>
       <TableRow className={classes.root}>
@@ -40,8 +45,7 @@ const Row = ({ user }: RowProps) => {
         </StyledTableCell>
         <StyledTableCell>{user.name}</StyledTableCell>
         <StyledTableCell>{user.lastName}</StyledTableCell>
-        <StyledTableCell>{}</StyledTableCell>
-        <StyledTableCell align="right">{}</StyledTableCell>
+        <StyledTableCell align="right">{maxCharacterLevel}</StyledTableCell>
       </TableRow>
       <TableRow>
         <StyledTableCell
