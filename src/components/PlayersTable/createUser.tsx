@@ -69,7 +69,7 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
           Ingresa la información del jugador
         </DialogContentText>
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
               fullWidth
               variant="outlined"
@@ -81,7 +81,7 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
               onChange={e => setEmail(e.target.value)}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
               fullWidth
               variant="outlined"
@@ -93,7 +93,7 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
               onChange={e => setName(e.target.value)}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
               fullWidth
               variant="outlined"

@@ -1,5 +1,8 @@
 import * as functions from "firebase-functions";
+import { QueryDocumentSnapshot } from "@firebase/firestore-types";
+import { Character } from "./interfaces";
 import FormData = require("form-data");
+
 const axios = require("axios").default;
 
 export const getToken = async () => {
@@ -17,7 +20,7 @@ export const getToken = async () => {
   return token;
 };
 
-export const getCharacterInfo = async (
+const getCharacterInfo = async (
   characterName: string,
   realmSlug: string,
   token: string,
@@ -33,4 +36,29 @@ export const getCharacterInfo = async (
   );
 
   return response;
+};
+
+export const updateUserCharactersData = async (
+  userDoc: QueryDocumentSnapshot,
+  token: string,
+) => {
+  const userData = userDoc.data();
+  const { characters } = userData;
+
+  const updateUserCharactersPromises = characters.map(
+    async (character: Character) => {
+      const {
+        name,
+        realm: { slug },
+      } = character;
+
+      return getCharacterInfo(name, slug, token).then(response => {
+        const newLevel = response.data.level;
+        character.level = newLevel;
+      });
+    },
+  );
+
+  await Promise.all(updateUserCharactersPromises);
+  return await userDoc.ref.update({ characters });
 };

@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import {
   Button,
+  CircularProgress,
   Container,
   Dialog,
   Table,
@@ -38,8 +39,13 @@ export default function Orders() {
     idField: "email"
   });
   const [dialogMode, setDialogMode] = useState<DialogMode>(null);
+  const [updating, setUpdating] = useState<boolean>(false);
 
-  const updateCharactersInfo = functions.httpsCallable("updateCharactersInfo");
+  const updateCharactersInfo = async () => {
+    setUpdating(true);
+    await functions.httpsCallable("updateCharactersInfo")();
+    setUpdating(false);
+  };
 
   const classes = playersTableStyles();
   return (
@@ -50,7 +56,7 @@ export default function Orders() {
           variant="outlined"
           color="primary"
           size="small"
-          endIcon={<RefreshIcon />}
+          endIcon={updating ? <CircularProgress size={18} /> : <RefreshIcon />}
           onClick={() => updateCharactersInfo()}
         >
           Actualizar

@@ -1,14 +1,13 @@
 import * as functions from "firebase-functions";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 
-import { getCharacterInfo, getToken } from "./services";
-import { Character } from "./interfaces";
+import { getToken, updateUserCharactersData } from "./services";
 
 const admin = require("firebase-admin");
 admin.initializeApp();
 
 // Get token every 12 hours
-exports.scheduledFunctionCrontab = functions.pubsub
+exports.getNewClientToken = functions.pubsub
   .schedule("every 12 hours")
   .onRun(async () => {
     const token = await getToken();
@@ -32,29 +31,9 @@ exports.updateCharactersInfo = functions.https.onCall(async () => {
   const { token } = client_credentials.data();
 
   const updateUsersPromises = usersQuery.docs.map(
-    async (userDoc: QueryDocumentSnapshot) => {
-      const userData = userDoc.data();
-      const { characters } = userData;
-
-      const updateUserCharactersPromises = characters.map(
-        async (character: Character) => {
-          const {
-            name,
-            realm: { slug },
-          } = character;
-
-          return getCharacterInfo(name, slug, token).then(response => {
-            const newLevel = response.data.level;
-            character.level = newLevel;
-          });
-        },
-      );
-
-      await Promise.all(updateUserCharactersPromises);
-      return await userDoc.ref.update({ characters });
-    },
+    (userDoc: QueryDocumentSnapshot) =>
+      updateUserCharactersData(userDoc, token),
   );
 
-  await Promise.all(updateUsersPromises);
-  return null;
+  return await Promise.all(updateUsersPromises);
 });

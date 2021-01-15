@@ -81,7 +81,7 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
           Ingresa la información de tu personaje
         </DialogContentText>
         <Grid container spacing={2} justify="center">
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Autocomplete
               id="owner"
               options={users || []}
@@ -106,7 +106,7 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
               onChange={(e, newValue) => setOwner(newValue)}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <TextField
               fullWidth
               error={error.name}
@@ -118,7 +118,7 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
               onChange={e => setName(e.target.value)}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Autocomplete
               id="character-realm-input"
               options={sortedRealms}
