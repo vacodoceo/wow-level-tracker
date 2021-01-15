@@ -58,6 +58,7 @@ export default function Orders() {
           size="small"
           endIcon={updating ? <CircularProgress size={18} /> : <RefreshIcon />}
           onClick={() => updateCharactersInfo()}
+          disabled={updating}
         >
           Actualizar
         </Button>

@@ -8,15 +8,19 @@ const axios = require("axios").default;
 export const getToken = async () => {
   const { client_id, client_secret } = functions.config().blizzard;
   const form = new FormData();
-  form.append("grant-type", "client_credentials");
+  form.append("grant_type", "client_credentials");
 
-  const token = await axios.post("https://us.battle.net/oauth/token", form, {
-    auth: {
-      username: client_id,
-      password: client_secret,
-    },
-  });
+  const response = await axios
+    .post("https://us.battle.net/oauth/token", form, {
+      auth: {
+        username: client_id,
+        password: client_secret,
+      },
+      headers: form.getHeaders(),
+    })
+    .catch(console.log);
 
+  const token = response.data.access_token;
   return token;
 };
 
