@@ -1,12 +1,16 @@
 import { useState, Fragment } from "react";
 
-import Box from "@material-ui/core/Box";
-import Collapse from "@material-ui/core/Collapse";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
+import {
+  Box,
+  Collapse,
+  Table,
+  TableBody,
+  TableHead,
+  TableRow,
+  Tooltip,
+  Typography
+} from "@material-ui/core";
+import HelpIcon from "@material-ui/icons/Help";
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
@@ -25,7 +29,7 @@ const Row = ({ user }: RowProps) => {
 
   const maxCharacterLevel = Math.max(
     ...user.characters.map(character => character.level || 1),
-    1
+    0
   );
 
   return (
@@ -45,7 +49,13 @@ const Row = ({ user }: RowProps) => {
         </StyledTableCell>
         <StyledTableCell>{user.name}</StyledTableCell>
         <StyledTableCell>{user.lastName}</StyledTableCell>
-        <StyledTableCell align="right">{maxCharacterLevel}</StyledTableCell>
+        <StyledTableCell align="right">
+          {maxCharacterLevel || (
+            <Tooltip title="Debes añadir 1 o más personajes a esta cuenta">
+              <HelpIcon fontSize="inherit" color="primary" />
+            </Tooltip>
+          )}
+        </StyledTableCell>
       </TableRow>
       <TableRow>
         <StyledTableCell

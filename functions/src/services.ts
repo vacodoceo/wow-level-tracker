@@ -10,15 +10,13 @@ export const getToken = async () => {
   const form = new FormData();
   form.append("grant_type", "client_credentials");
 
-  const response = await axios
-    .post("https://us.battle.net/oauth/token", form, {
-      auth: {
-        username: client_id,
-        password: client_secret,
-      },
-      headers: form.getHeaders(),
-    })
-    .catch(console.log);
+  const response = await axios.post("https://us.battle.net/oauth/token", form, {
+    auth: {
+      username: client_id,
+      password: client_secret,
+    },
+    headers: form.getHeaders(),
+  });
 
   const token = response.data.access_token;
   return token;
