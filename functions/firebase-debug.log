@@ -1,0 +1,18 @@
+[debug] [2021-01-16T07:31:32.115Z] ----------------------------------------------------------------------
+[debug] [2021-01-16T07:31:32.120Z] Command:       /home/verner/.nvm/versions/node/v12.13.1/bin/node /home/verner/.nvm/versions/node/v12.13.1/bin/firebase login
+[debug] [2021-01-16T07:31:32.120Z] CLI Version:   9.2.1
+[debug] [2021-01-16T07:31:32.120Z] Platform:      linux
+[debug] [2021-01-16T07:31:32.120Z] Node Version:  v12.13.1
+[debug] [2021-01-16T07:31:32.121Z] Time:          Sat Jan 16 2021 04:31:32 GMT-0300 (Chile Summer Time)
+[debug] [2021-01-16T07:31:32.121Z] ----------------------------------------------------------------------
+[debug] [2021-01-16T07:31:32.121Z] 
+[debug] [2021-01-16T07:31:32.124Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=566338006&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2021-01-16T07:31:45.665Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token  
+ {"code":"4/0AY0e-g6NR4wYP2QH3bZAyyE3Yg1HbCHrzFy6xsX-YP_HrATVC1hoerKlxqol7OzkiOSWiw","client_id":"563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com","client_secret":"j9iVZfS8kkCEFUPaAeJV0sAi","redirect_uri":"http://localhost:9005","grant_type":"authorization_code"}

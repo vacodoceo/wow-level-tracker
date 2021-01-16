@@ -1,3 +1,5 @@
+import admin = require("firebase-admin");
+
 export interface Realm {
   name: string;
   id: number;
@@ -15,4 +17,5 @@ export interface User {
   name: string;
   lastName: string;
   characters: Character[];
+  updatedAt: admin.firestore.Timestamp;
 }

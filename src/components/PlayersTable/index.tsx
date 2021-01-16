@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   TableBody,
   TableCell,
   TableHead,
-  TableRow
+  TableRow,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import RefreshIcon from "@material-ui/icons/Refresh";
@@ -24,26 +24,35 @@ import Title from "../Title";
 
 type DialogMode = "character" | "user" | null;
 
-export const StyledTableCell = withStyles(theme => ({
+export const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.primary.light,
-    color: theme.palette.primary.contrastText
+    color: theme.palette.primary.contrastText,
   },
   body: {
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 }))(TableCell);
 
 export default function Orders() {
   const [values] = useCollectionData<User>(firestore.collection("users"), {
-    idField: "email"
+    idField: "email",
   });
   const [dialogMode, setDialogMode] = useState<DialogMode>(null);
   const [updating, setUpdating] = useState<boolean>(false);
+  const [lastUpdate, setLastUpdate] = useState<string>("Sin información");
+
+  useEffect(() => {
+    if (values) {
+      const updateTimestamps = values!.map((user) => user.updatedAt);
+      const lastTimestamp = updateTimestamps.sort()[0];
+      setLastUpdate(lastTimestamp.toDate().toLocaleString());
+    }
+  }, [values]);
 
   const updateCharactersInfo = async () => {
     setUpdating(true);
-    await functions.httpsCallable("updateCharactersInfo")();
+    await functions.httpsCallable("updateAllCharactersData")();
     setUpdating(false);
   };
 
@@ -52,16 +61,21 @@ export default function Orders() {
     <Fragment>
       <Container className={classes.tableHeader}>
         <Title>Jugadores</Title>
-        <Button
-          variant="outlined"
-          color="primary"
-          size="small"
-          endIcon={updating ? <CircularProgress size={18} /> : <RefreshIcon />}
-          onClick={() => updateCharactersInfo()}
-          disabled={updating}
-        >
-          Actualizar
-        </Button>
+        <Container className={classes.updateContainer}>
+          Última actualización: {lastUpdate}
+          <Button
+            variant="outlined"
+            color="primary"
+            size="small"
+            endIcon={
+              updating ? <CircularProgress size={18} /> : <RefreshIcon />
+            }
+            onClick={() => updateCharactersInfo()}
+            disabled={updating}
+          >
+            Actualizar
+          </Button>
+        </Container>
       </Container>
 
       <Table size="small">
@@ -75,7 +89,7 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {values?.map(user => (
+          {values?.map((user) => (
             <Row user={user} key={`${user.name}-${user.lastName}`} />
           ))}
         </TableBody>
