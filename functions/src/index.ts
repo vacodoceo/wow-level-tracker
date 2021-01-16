@@ -1,7 +1,5 @@
 import * as functions from "firebase-functions";
-import { QueryDocumentSnapshot } from "@firebase/firestore-types";
-
-import { getToken, updateUserCharactersData } from "./services";
+import { getToken, updateAllCharactersData } from "./services";
 
 const admin = require("firebase-admin");
 admin.initializeApp();
@@ -19,21 +17,19 @@ exports.getNewClientToken = functions.pubsub
     return null;
   });
 
-exports.updateCharactersInfo = functions.https.onCall(async () => {
-  const usersQuery = await admin
-    .firestore()
-    .collection("users")
-    .get();
-  const client_credentials = await admin
-    .firestore()
-    .doc("credentials/client_credentials")
-    .get();
-  const { token } = client_credentials.data();
+// Trigger character data update on HTTP call
+exports.updateAllCharactersData = functions.https.onCall(
+  updateAllCharactersData,
+);
 
-  const updateUsersPromises = usersQuery.docs.map(
-    (userDoc: QueryDocumentSnapshot) =>
-      updateUserCharactersData(userDoc, token),
-  );
+// Trigger character data update if a character is created
+exports.onCharacterCreation = functions.firestore
+  .document("users/{userId}")
+  .onUpdate((change) => {
+    const previousCharacters = change.before.data().characters;
+    const newCharacters = change.after.data().characters;
 
-  return await Promise.all(updateUsersPromises);
-});
+    if (previousCharacters.length < newCharacters.length) {
+      updateAllCharactersData();
+    }
+  });

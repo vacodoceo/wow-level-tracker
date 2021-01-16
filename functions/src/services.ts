@@ -3,6 +3,7 @@ import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import { Character } from "./interfaces";
 import FormData = require("form-data");
 
+const admin = require("firebase-admin");
 const axios = require("axios").default;
 
 export const getToken = async () => {
@@ -40,7 +41,7 @@ const getCharacterInfo = async (
   return response;
 };
 
-export const updateUserCharactersData = async (
+const updateUserCharactersData = async (
   userDoc: QueryDocumentSnapshot,
   token: string,
 ) => {
@@ -54,7 +55,7 @@ export const updateUserCharactersData = async (
         realm: { slug },
       } = character;
 
-      return getCharacterInfo(name, slug, token).then(response => {
+      return getCharacterInfo(name, slug, token).then((response) => {
         const newLevel = response.data.level;
         character.level = newLevel;
       });
@@ -62,5 +63,24 @@ export const updateUserCharactersData = async (
   );
 
   await Promise.all(updateUserCharactersPromises);
-  return await userDoc.ref.update({ characters });
+  return await userDoc.ref.update({
+    characters,
+    updatedAt: admin.firestore.Timestamp.now(),
+  });
+};
+
+export const updateAllCharactersData = async () => {
+  const usersQuery = await admin.firestore().collection("users").get();
+  const client_credentials = await admin
+    .firestore()
+    .doc("credentials/client_credentials")
+    .get();
+  const { token } = client_credentials.data();
+
+  const updateUsersPromises = usersQuery.docs.map(
+    (userDoc: QueryDocumentSnapshot) =>
+      updateUserCharactersData(userDoc, token),
+  );
+
+  return await Promise.all(updateUsersPromises);
 };
