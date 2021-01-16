@@ -25,11 +25,12 @@ exports.updateAllCharactersData = functions.https.onCall(
 // Trigger character data update if a character is created
 exports.onCharacterCreation = functions.firestore
   .document("users/{userId}")
-  .onUpdate((change) => {
+  .onUpdate(async change => {
     const previousCharacters = change.before.data().characters;
     const newCharacters = change.after.data().characters;
 
     if (previousCharacters.length < newCharacters.length) {
-      updateAllCharactersData();
+      await updateAllCharactersData();
     }
+    return null;
   });
