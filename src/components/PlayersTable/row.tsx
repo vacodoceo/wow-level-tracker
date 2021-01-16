@@ -1,0 +1,98 @@
+import { useState, Fragment } from "react";
+
+import {
+  Box,
+  Collapse,
+  Table,
+  TableBody,
+  TableHead,
+  TableRow,
+  Tooltip,
+  Typography
+} from "@material-ui/core";
+import HelpIcon from "@material-ui/icons/Help";
+import IconButton from "@material-ui/core/IconButton";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+
+import { StyledTableCell } from "./index";
+import playersTableStyles from "./styles";
+import { User } from "../../firebase";
+
+interface RowProps {
+  user: User;
+}
+
+const Row = ({ user }: RowProps) => {
+  const [open, setOpen] = useState(false);
+  const classes = playersTableStyles();
+
+  const maxCharacterLevel = Math.max(
+    ...user.characters.map(character => character.level || 1),
+    0
+  );
+
+  return (
+    <Fragment>
+      <TableRow className={classes.root}>
+        <StyledTableCell>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </StyledTableCell>
+        <StyledTableCell component="th" scope="row">
+          {user.email}
+        </StyledTableCell>
+        <StyledTableCell>{user.name}</StyledTableCell>
+        <StyledTableCell>{user.lastName}</StyledTableCell>
+        <StyledTableCell align="right">
+          {maxCharacterLevel || (
+            <Tooltip title="Debes añadir 1 o más personajes a esta cuenta">
+              <HelpIcon fontSize="inherit" color="primary" />
+            </Tooltip>
+          )}
+        </StyledTableCell>
+      </TableRow>
+      <TableRow>
+        <StyledTableCell
+          style={{ paddingBottom: 0, paddingTop: 0 }}
+          colSpan={6}
+        >
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box margin={1}>
+              <Typography variant="subtitle1">Personajes</Typography>
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Nombre</StyledTableCell>
+                    <StyledTableCell>Reino</StyledTableCell>
+                    <StyledTableCell align="right">Nivel</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {user.characters.map(character => (
+                    <TableRow key={`${character.name}-${character.realm.slug}`}>
+                      <StyledTableCell component="th" scope="row">
+                        {character.name}
+                      </StyledTableCell>
+                      <StyledTableCell>{character.realm.name}</StyledTableCell>
+                      <StyledTableCell align="right">
+                        {character.level}
+                      </StyledTableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Box>
+          </Collapse>
+        </StyledTableCell>
+      </TableRow>
+    </Fragment>
+  );
+};
+
+export default Row;

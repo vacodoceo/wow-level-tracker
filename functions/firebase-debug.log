@@ -1,0 +1,152 @@
+[debug] [2021-01-16T07:40:03.537Z] ----------------------------------------------------------------------
+[debug] [2021-01-16T07:40:03.538Z] Command:       /Users/vernercodoceo/.nvm/versions/node/v12.13.1/bin/node /Users/vernercodoceo/.nvm/versions/node/v12.13.1/bin/firebase deploy
+[debug] [2021-01-16T07:40:03.539Z] CLI Version:   9.2.0
+[debug] [2021-01-16T07:40:03.539Z] Platform:      darwin
+[debug] [2021-01-16T07:40:03.539Z] Node Version:  v12.13.1
+[debug] [2021-01-16T07:40:03.539Z] Time:          Sat Jan 16 2021 04:40:03 GMT-0300 (Chile Summer Time)
+[debug] [2021-01-16T07:40:03.539Z] ----------------------------------------------------------------------
+[debug] [2021-01-16T07:40:03.540Z] 
+[debug] [2021-01-16T07:40:03.546Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-01-16T07:40:03.546Z] > authorizing via signed-in user
+[debug] [2021-01-16T07:40:03.547Z] [iam] checking project wow-level-tracker for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-01-16T07:40:03.549Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-01-16T07:40:03.549Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-01-16T07:40:03.665Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 16 Jan 2021 07:40:03 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:03.698Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/wow-level-tracker:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-01-16T07:40:04.672Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:04 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=913","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:04.674Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/wow-level-tracker/serviceAccounts/wow-level-tracker@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-01-16T07:40:05.531Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:05 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:05.534Z] > refreshing access token with scopes: []
+[debug] [2021-01-16T07:40:05.535Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-01-16T07:40:05.698Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 16 Jan 2021 07:40:05 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:05.729Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/wow-level-tracker [none]
+[debug] [2021-01-16T07:40:06.621Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/wow-level-tracker 200
+[debug] [2021-01-16T07:40:06.621Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/wow-level-tracker {"projectId":"wow-level-tracker","projectNumber":"650710393143","displayName":"wow-level-tracker","name":"projects/wow-level-tracker","resources":{"hostingSite":"wow-level-tracker","storageBucket":"wow-level-tracker.appspot.com","locationId":"southamerica-east1"},"state":"ACTIVE"}
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions.
+Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[info] 
+[info] === Deploying to 'wow-level-tracker'...
+[info] 
+[info] i  deploying firestore, functions, hosting 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] ✔  functions: Finished running predeploy script. 
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2021-01-16T07:40:17.544Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-01-16T07:40:17.544Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-01-16T07:40:17.710Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Sat, 16 Jan 2021 07:40:17 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:17.739Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/wow-level-tracker:test  
+ {"source":{"files":[{"name":"firestore.rules","content":"rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /{document=**} {\n      allow read, write: if\n          request.time < timestamp.date(2021, 1, 30);\n    }\n  }\n}"}]}}
+[debug] [2021-01-16T07:40:18.082Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:18 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2021-01-16T07:40:18.083Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint \"src/**/*\" --resolve-plugins-relative-to .",
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "12"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@firebase/firestore-types": "^2.1.0",
+    "axios": "^0.21.1",
+    "firebase": "^8.2.1",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.13.0",
+    "form-data": "^3.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.17.0",
+    "eslint-plugin-import": "^2.22.0",
+    "firebase-functions-test": "^0.2.0",
+    "typescript": "^3.8.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2021-01-16T07:40:19.190Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/wow-level-tracker/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-01-16T07:40:19.191Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/wow-level-tracker/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-01-16T07:40:19.191Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/wow-level-tracker/services/cloudbuild.googleapis.com  
+ 
+[debug] [2021-01-16T07:40:20.343Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:20 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:20.361Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:20 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2021-01-16T07:40:20.393Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:20 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2021-01-16T07:40:20.395Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/wow-level-tracker/adminSdkConfig  
+ 
+[debug] [2021-01-16T07:40:21.364Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:21 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:21.369Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/wow-level-tracker/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-01-16T07:40:22.947Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:22 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:22.951Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/wow-level-tracker/releases?pageSize=10&pageToken=  
+ 
+[debug] [2021-01-16T07:40:22.951Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1/projects/wow-level-tracker/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2021-01-16T07:40:23.624Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:23.625Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1/projects/wow-level-tracker/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2021-01-16T07:40:23.866Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:23.868Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/wow-level-tracker/rulesets/cb1c3a1a-d7ea-4c58-a656-719eb4e21a72  
+ 
+[debug] [2021-01-16T07:40:24.333Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] ✔  firestore: deployed indexes in firestore.indexes.json successfully 
+[debug] [2021-01-16T07:40:24.846Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  functions: preparing functions directory for uploading... 
+[debug] [2021-01-16T07:40:24.849Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/wow-level-tracker/configs  
+ 
+[debug] [2021-01-16T07:40:26.004Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:26 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:26.005Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/wow-level-tracker/configs/blizzard/variables  
+ 
+[debug] [2021-01-16T07:40:26.994Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:26.995Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/wow-level-tracker/configs/blizzard/variables/client_id  
+ 
+[debug] [2021-01-16T07:40:26.996Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/wow-level-tracker/configs/blizzard/variables/client_secret  
+ 
+[debug] [2021-01-16T07:40:27.868Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:27.972Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:28 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: packaged functions (55.52 KB) for uploading 
+[debug] [2021-01-16T07:40:28.191Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/wow-level-tracker/locations/-/functions  
+ 
+[debug] [2021-01-16T07:40:30.783Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:30 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:30.785Z] [functions] found 1 new HTTP functions, testing setIamPolicy permission...
+[debug] [2021-01-16T07:40:30.786Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/wow-level-tracker:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2021-01-16T07:40:31.806Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:31 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=917","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:31.807Z] [functions] found setIamPolicy permission, proceeding with deploy
+[debug] [2021-01-16T07:40:31.809Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/wow-level-tracker/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2021-01-16T07:40:33.344Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 16 Jan 2021 07:40:33 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:33.344Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-8eb32fff-bc85-48b1-8707-7ef3fdbb1e0a/1f266cc9-aa81-46a7-a75a-f5cfed92f411.zip?GoogleAccessId=service-650710393143@gcf-admin-robot.iam.gserviceaccount.com&Expires=1610784633&Signature=OSEnkhcAMJsqaL2R7NBVYPHgLpmMmxNviQE9cWbLMUC4Aq46QkVyRJN99c%2BG8q6A0tCq2PzFKieMm7zy5%2BKzHhovFVO1%2FRlb0dxLu7l2jsl2FeXD0kOr4S4K1i3NSkJNFRWQHIEFJ7ZqLsngRgICGaCW6n%2BNNN51BDhHTIxfLEY8J6ExhdJ0AmEFbjo1S3urbY1u%2BFo0tHj6vU5zPgT3gxj9K30rl99SgL9aoHjN1zBrDFSkMvuAUUKzDIijcez%2FtFEdFoqzdc%2FS3jBA9FlYhoAv3ae0LH4124FgDl7JfPuylz0MQScSrLChVy4Fz4F58IK8IFRSak%2F2%2FFdaoxNvnQ%3D%3D  
+ <request body omitted>
+[debug] [2021-01-16T07:40:33.855Z] <<< HTTP RESPONSE 200 {"x-guploader-uploadid":"ABg5-UzJjLJWxqeAQhGITOFr21SxP8c_17embHFs65a9ZbVGaIkZluocgcq2PCCc7Op4hxw4kU64JtWEjfWYB6j-iKVM5J-2zg","etag":"\"93115f4329bc6b70cb101a2ef2ae3308\"","x-goog-generation":"1610782833780762","x-goog-metageneration":"1","x-goog-hash":"crc32c=E+41cg==, md5=kxFfQym8a3DLEBou8q4zCA==","x-goog-stored-content-length":"56851","x-goog-stored-content-encoding":"identity","vary":"Origin","content-length":"0","date":"Sat, 16 Jan 2021 07:40:33 GMT","server":"UploadServer","content-type":"text/html; charset=UTF-8","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""}
+[info] ✔  functions: functions folder uploaded successfully 
+[info] i  hosting[wow-level-tracker]: beginning deploy... 
+[info] i  hosting[wow-level-tracker]: found 16 files in build 
+[debug] [2021-01-16T07:40:33.867Z] > refreshing access token with scopes: []
+[debug] [2021-01-16T07:40:33.868Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-01-16T07:40:33.869Z] [hosting] hash cache [YnVpbGQ] stored for 16 files
+[debug] [2021-01-16T07:40:33.869Z] [hosting][hash queue][FINAL] {"max":1,"min":0,"avg":0,"active":0,"complete":16,"success":16,"errored":0,"retried":0,"total":16,"elapsed":4}
+[debug] [2021-01-16T07:40:34.033Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 16 Jan 2021 07:40:34 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-01-16T07:40:34.066Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/sites/wow-level-tracker/versions/33c323018903f7d8:populateFiles [none]
+[debug] [2021-01-16T07:40:34.066Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/wow-level-tracker/versions/33c323018903f7d8:populateFiles {"files":{"/asset-manifest.json":"2d9a0030eceae9dfee9ead02207ec7ccedb0df0d454548169570715fe90c3973","/favicon.ico":"b72f7455f00e4e58792d2bca892abb068e2213838c0316d6b7a0d6d16acd1955","/index.html":"ac54a05e9efbabfac9339421f214289b37270a34a4f199fe4a9a6238f8df7c18","/logo192.png":"caff018b7f1e8fd481eb1c50d75b0ef236bcd5078b1d15c8bb348453fee30293","/logo512.png":"191fc21360b4ccfb1cda11a1efb97f489ed22672ca83f4064316802bbfdd750e","/manifest.json":"341d52628782f8ac9290bbfc43298afccb47b7cbfcee146ae30cf0f46bc30900","/robots.txt":"391d14b3c2f8c9143a27a28c7399585142228d4d1bdbe2c87ac946de411fa9a2","/static/js/2.a0adfca8.chunk.js":"e1aeae5ad5adeab49a2806d9fa5dc6db08999cefc3e9a91dfccdf9a012c8613e","/static/js/2.a0adfca8.chunk.js.LICENSE.txt":"905442038549ff8757136a251b7d0a69c7baa1385aa960ab6f6ea9695ce4bdbd","/static/js/2.a0adfca8.chunk.js.map":"037a8e6ba5a2bd1aaa22a11e49b83394cf1edd75c6d3ebafb54702a25e19fd7a","/static/js/3.145613a8.chunk.js":"b5a0aa8840f78cbbb06d53f32770543d99011245feaad0ba60217201fe331fcf","/static/js/3.145613a8.chunk.js.map":"97bb2ad5e6ef15f3a349fa51b5b2f9672d083da35c055477c4923286bdf0fc6a","/static/js/main.5e79f199.chunk.js":"bb469eecce39f383a00c155e638e3d7f9c94db0ead2a021941b0b1e222e6737c","/static/js/main.5e79f199.chunk.js.map":"72b3d57158ed8d3655fd1351adb73130a18c6d61e573c226dfbe4376e4729a5c","/static/js/runtime-main.5a2ceda4.js":"87837689b2c3e6445af6b6edf78910856af6d3c13a2dc8379eb706d2f1edaedc","/static/js/runtime-main.5a2ceda4.js.map":"91c223a2a3fc40cbc0683126fef0df92b5ab9d1045cfd038180491daeeeefbfd"}}
