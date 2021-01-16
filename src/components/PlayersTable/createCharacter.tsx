@@ -8,7 +8,7 @@ import {
   DialogContent,
   DialogContentText,
   Grid,
-  TextField
+  TextField,
 } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
@@ -31,10 +31,10 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
   const [error, setError] = useState({
     owner: false,
     name: false,
-    realm: false
+    realm: false,
   });
   const [users] = useCollectionData<User>(firestore.collection("users"), {
-    idField: "email"
+    idField: "email",
   });
   const [submitting, setSubmitting] = useState<boolean>(false);
 
@@ -47,23 +47,23 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
     const newError = {
       owner: !owner,
       name: !name,
-      realm: !realm
+      realm: !realm,
     };
     setError(newError);
 
-    const validInput = Object.values(newError).every(error => !error);
+    const validInput = Object.values(newError).every((error) => !error);
     if (validInput) {
       setSubmitting(true);
       const newCharacter: Character = {
         name,
         realm: realm!,
-        level: null
+        level: null,
       };
       firestore
         .collection("users")
         .doc(owner?.email)
         .update({
-          characters: firebase.firestore.FieldValue.arrayUnion(newCharacter)
+          characters: firebase.firestore.FieldValue.arrayUnion(newCharacter),
         })
         .then(() => {
           setSubmitting(false);
@@ -87,8 +87,10 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
               options={users || []}
               size="small"
               autoHighlight
-              getOptionLabel={option => option.email}
-              renderInput={params => (
+              getOptionLabel={(option) =>
+                `${option.email} (${option.name} ${option.lastName})`
+              }
+              renderInput={(params) => (
                 <TextField
                   {...params}
                   error={error.owner}
@@ -97,8 +99,8 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
                   inputProps={{
                     ...params.inputProps,
                     form: {
-                      autocomplete: "off" // disable autocomplete and autofill
-                    }
+                      autocomplete: "off", // disable autocomplete and autofill
+                    },
                   }}
                 />
               )}
@@ -115,7 +117,7 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
               id="character-name-input"
               label="Nombre del personaje*"
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -124,8 +126,8 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
               options={sortedRealms}
               size="small"
               autoHighlight
-              getOptionLabel={option => option.name}
-              renderInput={params => (
+              getOptionLabel={(option) => option.name}
+              renderInput={(params) => (
                 <TextField
                   {...params}
                   error={error.realm}
@@ -134,8 +136,8 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
                   inputProps={{
                     ...params.inputProps,
                     form: {
-                      autocomplete: "off"
-                    } // disable autocomplete and autofill
+                      autocomplete: "off",
+                    }, // disable autocomplete and autofill
                   }}
                 />
               )}
