@@ -7,11 +7,11 @@ import {
   DialogContent,
   DialogContentText,
   Grid,
-  TextField
+  TextField,
 } from "@material-ui/core";
 
 import firebase, { firestore } from "../../firebase";
-import playersTableStyles from "./styles";
+import formsStyles from "./styles";
 
 interface CreateUserProps {
   closeDialog: Function;
@@ -24,7 +24,7 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
   const [error, setError] = useState({
     email: false,
     name: false,
-    lastName: false
+    lastName: false,
   });
   const [submitting, setSubmitting] = useState<boolean>(false);
 
@@ -37,11 +37,11 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
     const newError = {
       email: !email,
       name: !name,
-      lastName: !lastName
+      lastName: !lastName,
     };
     setError(newError);
 
-    const validInput = Object.values(newError).every(error => !error);
+    const validInput = Object.values(newError).every((error) => !error);
     if (validInput) {
       setSubmitting(true);
       firestore
@@ -51,7 +51,8 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
           name,
           lastName,
           characters: [],
-          updatedAt: firebase.firestore.Timestamp.now()
+          group: "",
+          updatedAt: firebase.firestore.Timestamp.now(),
         })
         .then(() => {
           setSubmitting(false);
@@ -60,7 +61,7 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
     }
   };
 
-  const classes = playersTableStyles();
+  const classes = formsStyles();
   return (
     <form onSubmit={handleSubmit}>
       <DialogTitle>Añadir jugador</DialogTitle>
@@ -78,7 +79,7 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
               id="email"
               value={email}
               label="Correo de la cuenta*"
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -90,7 +91,7 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
               id="name"
               value={name}
               label="Nombre del jugador*"
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -102,7 +103,7 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
               id="lastName"
               label="Apellido del jugador*"
               value={lastName}
-              onChange={e => setLastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </Grid>
         </Grid>

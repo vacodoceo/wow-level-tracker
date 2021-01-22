@@ -1,20 +1,38 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import PlayersTable from "../../components/PlayersTable";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { Grid, Paper } from "@material-ui/core";
+
+import { firestore, User } from "../../firebase";
+import CreateButtons from "./CreateButtons";
+import Header from "./Header";
+import PlayersDataGrid from "./PlayersDataGrid";
 import dashboardStyles from "./styles";
 
 export default function Dashboard() {
+  const [users, loading] = useCollectionData<User>(
+    firestore.collection("users"),
+    {
+      idField: "email",
+    }
+  );
   const classes = dashboardStyles();
 
+  if (loading) {
+    return <Paper className={classes.paper}>Cargando</Paper>;
+  }
+
   return (
-    <Grid container spacing={3}>
-      {/* Recent Orders */}
-      <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          <PlayersTable />
-        </Paper>
+    <Paper className={classes.paper}>
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <Header users={users!} />
+        </Grid>
+        <Grid item xs={12} style={{ height: "calc(100vh - 360px)" }}>
+          <PlayersDataGrid users={users!} />
+        </Grid>
+        <Grid item xs={12}>
+          <CreateButtons />
+        </Grid>
       </Grid>
-    </Grid>
+    </Paper>
   );
 }
