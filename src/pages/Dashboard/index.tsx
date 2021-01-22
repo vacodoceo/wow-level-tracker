@@ -26,7 +26,7 @@ export default function Dashboard() {
         <Grid item xs={12}>
           <Header users={users!} />
         </Grid>
-        <Grid item xs={12} style={{ height: "calc(100vh - 320px)" }}>
+        <Grid item xs={12} style={{ height: "calc(100vh - 360px)" }}>
           <PlayersDataGrid users={users!} />
         </Grid>
         <Grid item xs={12}>
