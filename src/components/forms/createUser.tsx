@@ -51,6 +51,7 @@ const CreateUser = ({ closeDialog }: CreateUserProps) => {
           name,
           lastName,
           characters: [],
+          group: "",
           updatedAt: firebase.firestore.Timestamp.now(),
         })
         .then(() => {

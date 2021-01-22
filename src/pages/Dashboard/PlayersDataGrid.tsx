@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { MenuItem, Select, Tooltip } from "@material-ui/core";
 import {
   DataGrid,
@@ -8,7 +8,7 @@ import {
 } from "@material-ui/data-grid";
 import HelpIcon from "@material-ui/icons/Help";
 
-import { Character, User } from "../../firebase";
+import { Character, firestore, User } from "../../firebase";
 
 interface PlayerDataGridProps {
   users: User[];
@@ -17,6 +17,13 @@ interface PlayerDataGridProps {
 interface UserWithId extends User {
   id: string;
 }
+
+const changeUserGroup = (email: string, group: unknown) => {
+  firestore.doc(`users/${email}`).update({
+    group,
+  });
+  return;
+};
 
 const columns: ColDef[] = [
   { field: "email", headerName: "Correo", width: 240 },
@@ -52,13 +59,15 @@ const columns: ColDef[] = [
         labelId="demo-simple-select-filled-label"
         id="demo-simple-select-filled"
         value={params.getValue("group")}
+        onChange={(e: ChangeEvent<{ value: unknown }>) =>
+          changeUserGroup(params.row.email, e.target.value)
+        }
       >
         <MenuItem value="">
-          <em>None</em>
+          <em>Sin grupo</em>
         </MenuItem>
-        <MenuItem>Ten</MenuItem>
-        <MenuItem>Twenty</MenuItem>
-        <MenuItem>Thirty</MenuItem>
+        <MenuItem value="25 de diciembre">25 de diciembre</MenuItem>
+        <MenuItem value="1 de enero">1 de enero</MenuItem>
       </Select>
     ),
   },
