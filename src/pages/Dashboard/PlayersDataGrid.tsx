@@ -26,12 +26,12 @@ const changeUserGroup = (email: string, group: unknown) => {
 };
 
 const columns: ColDef[] = [
-  { field: "email", headerName: "Correo", width: 240 },
+  { field: "email", headerName: "Correo", width: 200 },
   {
     field: "maxLevel",
     headerName: "Nivel",
     description: "Nivel del personaje más alto.",
-    width: 120,
+    width: 100,
     valueGetter: (params: ValueGetterParams) =>
       Math.max(
         ...params.row.characters.map(
