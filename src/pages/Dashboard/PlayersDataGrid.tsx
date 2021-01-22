@@ -31,7 +31,7 @@ const columns: ColDef[] = [
     field: "maxLevel",
     headerName: "Nivel",
     description: "Nivel del personaje más alto.",
-    width: 100,
+    width: 120,
     valueGetter: (params: ValueGetterParams) =>
       Math.max(
         ...params.row.characters.map(
