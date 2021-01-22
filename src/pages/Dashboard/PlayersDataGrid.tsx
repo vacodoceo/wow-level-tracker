@@ -68,6 +68,9 @@ const columns: ColDef[] = [
         </MenuItem>
         <MenuItem value="25 de diciembre">25 de diciembre</MenuItem>
         <MenuItem value="1 de enero">1 de enero</MenuItem>
+        <MenuItem value="8 de enero">8 de enero</MenuItem>
+        <MenuItem value="15 de enero">15 de enero</MenuItem>
+        <MenuItem value="22 de enero">22 de enero</MenuItem>
       </Select>
     ),
   },

@@ -21,7 +21,7 @@ const CreateButtons = () => {
             onClick={() => setDialogMode("user")}
             startIcon={<AddIcon />}
           >
-            Añadir jugador
+            Jugador
           </Button>
         </Grid>
         <Grid item>
@@ -32,7 +32,7 @@ const CreateButtons = () => {
             onClick={() => setDialogMode("character")}
             startIcon={<AddIcon />}
           >
-            Añadir personaje
+            Personaje
           </Button>
         </Grid>
       </Grid>
