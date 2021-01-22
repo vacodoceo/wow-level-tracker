@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 
 const Copyright = () => {
   return (
-    <Box pt={4}>
+    <Box pt={3}>
       <Typography variant="body2" color="textSecondary" align="center">
         WoW Level Tracker by{" "}
         <Link variant="overline" href="https://github.com/vacodoceo/">

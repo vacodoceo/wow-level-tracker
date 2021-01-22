@@ -25,6 +25,7 @@ export interface User {
   name: string;
   lastName: string;
   characters: Character[];
+  group: string | number;
   updatedAt: firebase.firestore.Timestamp;
 }
 

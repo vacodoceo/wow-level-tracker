@@ -8,19 +8,26 @@ import PlayersDataGrid from "./PlayersDataGrid";
 import dashboardStyles from "./styles";
 
 export default function Dashboard() {
-  const [users] = useCollectionData<User>(firestore.collection("users"), {
-    idField: "email",
-  });
+  const [users, loading] = useCollectionData<User>(
+    firestore.collection("users"),
+    {
+      idField: "email",
+    }
+  );
   const classes = dashboardStyles();
+
+  if (loading) {
+    return <Paper className={classes.paper}>Cargando</Paper>;
+  }
 
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={1}>
         <Grid item xs={12}>
-          <Header users={users} />
+          <Header users={users!} />
         </Grid>
-        <Grid item xs={12}>
-          <PlayersDataGrid />
+        <Grid item xs={12} style={{ height: "calc(100vh - 320px)" }}>
+          <PlayersDataGrid users={users!} />
         </Grid>
         <Grid item xs={12}>
           <CreateButtons />

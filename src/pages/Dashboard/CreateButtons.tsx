@@ -2,7 +2,7 @@ import { useState, Fragment } from "react";
 import { Button, Dialog, Grid } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
-import CreateUser from "../../components/forms/createCharacter";
+import CreateUser from "../../components/forms/createUser";
 import CreateCharacter from "../../components/forms/createCharacter";
 
 type DialogMode = "character" | "user" | null;
