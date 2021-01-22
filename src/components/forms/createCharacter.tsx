@@ -14,7 +14,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import firebase, { firestore, Character, User } from "../../firebase";
 import realms, { Realm } from "../../constants/realms";
-import playersTableStyles from "./styles";
+import formsStyles from "./styles";
 
 interface CreateCharacterProps {
   closeDialog: Function;
@@ -72,7 +72,7 @@ const CreateCharacter = ({ closeDialog }: CreateCharacterProps) => {
     }
   };
 
-  const classes = playersTableStyles();
+  const classes = formsStyles();
   return (
     <form onSubmit={handleSubmit}>
       <DialogTitle>Añadir personaje</DialogTitle>
