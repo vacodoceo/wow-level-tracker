@@ -50,13 +50,8 @@ const Header = ({ users, groupFilter, setGroupFilter }: HeaderProps) => {
       </Grid>
       <Grid item>
         <Tooltip
-<<<<<<< HEAD
-          title={`Última actualización: ${lastUpdate}`}
-          enterTouchDelay={300}
-=======
           enterTouchDelay={300}
           title={`Última actualización: ${lastUpdate}`}
->>>>>>> dev
         >
           <Button
             variant="outlined"
