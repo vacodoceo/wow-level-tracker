@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Grid, Paper } from "@material-ui/core";
 
@@ -11,11 +12,12 @@ export default function Dashboard() {
   const [users, loading] = useCollectionData<User>(
     firestore.collection("users"),
     {
-      idField: "email",
+      idField: "email"
     }
   );
-  const classes = dashboardStyles();
+  const [groupFilter, setGroupFilter] = useState("leveling");
 
+  const classes = dashboardStyles();
   if (loading) {
     return <Paper className={classes.paper}>Cargando</Paper>;
   }
@@ -24,13 +26,19 @@ export default function Dashboard() {
     <Paper className={classes.paper}>
       <Grid container spacing={1}>
         <Grid item xs={12}>
-          <Header users={users!} />
+          <Header
+            users={users!}
+            groupFilter={groupFilter}
+            setGroupFilter={setGroupFilter}
+          />
         </Grid>
-        <Grid item xs={12} style={{ height: "calc(100vh - 360px)" }}>
-          <PlayersDataGrid users={users!} />
+        <Grid item xs={12} style={{ height: "calc(100vh - 320px)" }}>
+          <PlayersDataGrid
+            users={users!.filter(user => user.program === groupFilter)}
+          />
         </Grid>
         <Grid item xs={12}>
-          <CreateButtons />
+          <CreateButtons groupFilter={groupFilter} />
         </Grid>
       </Grid>
     </Paper>
