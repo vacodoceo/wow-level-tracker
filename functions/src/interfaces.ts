@@ -16,7 +16,8 @@ export interface User {
   email: string;
   name: string;
   lastName: string;
-  group: string | number;
   characters: Character[];
+  group: string | number;
+  program: string;
   updatedAt: admin.firestore.Timestamp;
 }

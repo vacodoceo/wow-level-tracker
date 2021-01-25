@@ -1,20 +1,30 @@
 import { useState, useEffect } from "react";
-import { Button, CircularProgress, Grid, Typography } from "@material-ui/core";
+import {
+  Button,
+  CircularProgress,
+  Grid,
+  Tab,
+  Tabs,
+  Typography
+} from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
+
 import { functions, User } from "../../firebase";
-import Title from "../../components/Title";
+import programs, { Program } from "../../constants/programs";
 
 interface HeaderProps {
   users: User[] | undefined;
+  groupFilter: string;
+  setGroupFilter(groupFilter: string): void;
 }
 
-const Header = ({ users }: HeaderProps) => {
+const Header = ({ users, groupFilter, setGroupFilter }: HeaderProps) => {
   const [updating, setUpdating] = useState<boolean>(false);
   const [lastUpdate, setLastUpdate] = useState<string>("Sin información");
 
   useEffect(() => {
     if (users) {
-      const updateTimestamps = users!.map((user) => user.updatedAt);
+      const updateTimestamps = users!.map(user => user.updatedAt);
       const lastTimestamp = updateTimestamps.sort()[0];
       setLastUpdate(lastTimestamp.toDate().toLocaleString());
     }
@@ -29,7 +39,14 @@ const Header = ({ users }: HeaderProps) => {
   return (
     <Grid container>
       <Grid item xs={12} md={6}>
-        <Title>Jugadores</Title>
+        <Tabs
+          value={groupFilter}
+          onChange={(e, newValue: string) => setGroupFilter(newValue)}
+        >
+          {programs.map((program: Program) => (
+            <Tab value={program.id} label={program.label} />
+          ))}
+        </Tabs>
       </Grid>
 
       <Grid

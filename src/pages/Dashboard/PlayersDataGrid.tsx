@@ -4,11 +4,12 @@ import {
   DataGrid,
   ColDef,
   ValueGetterParams,
-  ValueFormatterParams,
+  ValueFormatterParams
 } from "@material-ui/data-grid";
 import HelpIcon from "@material-ui/icons/Help";
 
 import { Character, firestore, User } from "../../firebase";
+import programs, { Program } from "../../constants/programs";
 
 interface PlayerDataGridProps {
   users: User[];
@@ -18,9 +19,9 @@ interface UserWithId extends User {
   id: string;
 }
 
-const changeUserGroup = (email: string, group: unknown) => {
+const updateUser = (email: string, key: string, value: unknown) => {
   firestore.doc(`users/${email}`).update({
-    group,
+    [key]: value
   });
   return;
 };
@@ -46,21 +47,19 @@ const columns: ColDef[] = [
         </Tooltip>
       ) : (
         params.row.maxLevel
-      ),
+      )
   },
   { field: "name", headerName: "Nombre", width: 160 },
   { field: "lastName", headerName: "Apellido", width: 160 },
   {
     field: "group",
     headerName: "Grupo",
-    width: 240,
+    width: 200,
     renderCell: (params: ValueFormatterParams) => (
       <Select
-        labelId="demo-simple-select-filled-label"
-        id="demo-simple-select-filled"
         value={params.getValue("group")}
         onChange={(e: ChangeEvent<{ value: unknown }>) =>
-          changeUserGroup(params.row.email, e.target.value)
+          updateUser(params.row.email, "group", e.target.value)
         }
       >
         <MenuItem value="">
@@ -70,10 +69,31 @@ const columns: ColDef[] = [
         <MenuItem value="1 de enero">1 de enero</MenuItem>
         <MenuItem value="8 de enero">8 de enero</MenuItem>
         <MenuItem value="15 de enero">15 de enero</MenuItem>
-        <MenuItem value="22 de enero">22 de enero</MenuItem>
+        <MenuItem value="22 de enero">22de enero</MenuItem>
       </Select>
-    ),
+    )
   },
+  {
+    field: "program",
+    headerName: "Programa",
+    hide: true,
+    width: 200,
+    renderCell: (params: ValueFormatterParams) => (
+      <Select
+        value={params.getValue("program")}
+        onChange={(e: ChangeEvent<{ value: unknown }>) =>
+          updateUser(params.row.email, "program", e.target.value)
+        }
+      >
+        <MenuItem value="">
+          <em>Sin programa</em>
+        </MenuItem>
+        {programs.map((program: Program) => (
+          <MenuItem value={program.id}>{program.label}</MenuItem>
+        ))}
+      </Select>
+    )
+  }
 ];
 
 const PlayerDataGrid = ({ users }: PlayerDataGridProps) => {
@@ -82,7 +102,7 @@ const PlayerDataGrid = ({ users }: PlayerDataGridProps) => {
   useEffect(() => {
     const newUsersWithId: UserWithId[] = users.map((user: User) => ({
       ...user,
-      id: user.email,
+      id: user.email
     }));
     setUsersWithId(newUsersWithId);
   }, [users]);
@@ -91,11 +111,12 @@ const PlayerDataGrid = ({ users }: PlayerDataGridProps) => {
     <div style={{ display: "flex", height: "100%" }}>
       <div style={{ flexGrow: 1 }}>
         <DataGrid
-          rows={usersWithId}
-          columns={columns}
           autoPageSize
-          rowHeight={32}
+          columns={columns}
+          disableSelectionOnClick
           headerHeight={48}
+          rowHeight={32}
+          rows={usersWithId}
         />
       </div>
     </div>

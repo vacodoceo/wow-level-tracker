@@ -5,9 +5,13 @@ import AddIcon from "@material-ui/icons/Add";
 import CreateUser from "../../components/forms/createUser";
 import CreateCharacter from "../../components/forms/createCharacter";
 
+interface CreateButtonProps {
+  groupFilter: string;
+}
+
 type DialogMode = "character" | "user" | null;
 
-const CreateButtons = () => {
+const CreateButtons = ({ groupFilter }: CreateButtonProps) => {
   const [dialogMode, setDialogMode] = useState<DialogMode>(null);
 
   return (
@@ -39,7 +43,10 @@ const CreateButtons = () => {
 
       <Dialog open={!!dialogMode} onClose={() => setDialogMode(null)} fullWidth>
         {dialogMode === "user" && (
-          <CreateUser closeDialog={() => setDialogMode(null)} />
+          <CreateUser
+            closeDialog={() => setDialogMode(null)}
+            program={groupFilter}
+          />
         )}
         {dialogMode === "character" && (
           <CreateCharacter closeDialog={() => setDialogMode(null)} />
