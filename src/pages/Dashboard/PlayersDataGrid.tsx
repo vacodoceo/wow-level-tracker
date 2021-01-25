@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { MenuItem, Select, Tooltip } from "@material-ui/core";
+import { Grid, IconButton, MenuItem, Select, Tooltip } from "@material-ui/core";
 import {
   DataGrid,
   ColDef,
@@ -10,6 +10,8 @@ import HelpIcon from "@material-ui/icons/Help";
 
 import { Character, firestore, User } from "../../firebase";
 import programs, { Program } from "../../constants/programs";
+import dashboardStyles from "./styles";
+import { AccountCircle, Delete } from "@material-ui/icons";
 
 interface PlayerDataGridProps {
   users: User[];
@@ -26,7 +28,7 @@ const updateUser = (email: string, key: string, value: unknown) => {
   return;
 };
 
-const columns: ColDef[] = [
+const makeColumns = (classes: any): ColDef[] => [
   { field: "email", headerName: "Correo", width: 200 },
   {
     field: "maxLevel",
@@ -93,6 +95,25 @@ const columns: ColDef[] = [
         ))}
       </Select>
     )
+  },
+  {
+    field: "actions",
+    flex: 1,
+    headerName: "Acciones",
+    renderCell: (params: ValueFormatterParams) => (
+      <Grid container spacing={1}>
+        <Grid item>
+          <IconButton aria-label="account-info" size="small">
+            <AccountCircle />
+          </IconButton>
+        </Grid>
+        <Grid item>
+          <IconButton aria-label="delete" size="small">
+            <Delete style={{ fill: "#ff4569" }} />
+          </IconButton>
+        </Grid>
+      </Grid>
+    )
   }
 ];
 
@@ -107,14 +128,17 @@ const PlayerDataGrid = ({ users }: PlayerDataGridProps) => {
     setUsersWithId(newUsersWithId);
   }, [users]);
 
+  const classes = dashboardStyles();
   return (
     <div style={{ display: "flex", height: "100%" }}>
       <div style={{ flexGrow: 1 }}>
         <DataGrid
           autoPageSize
-          columns={columns}
+          columns={makeColumns(classes)}
           disableSelectionOnClick
           headerHeight={48}
+          hideFooterRowCount
+          hideFooterSelectedRowCount
           rowHeight={32}
           rows={usersWithId}
         />

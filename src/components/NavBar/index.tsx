@@ -16,7 +16,7 @@ const NavBar = () => {
           noWrap
           className={classes.title}
         >
-          Dashboard
+          WoW Level Tracker
         </Typography>
       </Toolbar>
     </AppBar>

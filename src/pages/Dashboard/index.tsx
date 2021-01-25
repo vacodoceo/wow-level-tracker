@@ -22,8 +22,6 @@ export default function Dashboard() {
     return <Paper className={classes.paper}>Cargando</Paper>;
   }
 
-  console.log(groupFilter, users);
-
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={1}>
@@ -34,7 +32,7 @@ export default function Dashboard() {
             setGroupFilter={setGroupFilter}
           />
         </Grid>
-        <Grid item xs={12} style={{ height: "calc(100vh - 360px)" }}>
+        <Grid item xs={12} style={{ height: "calc(100vh - 300px)" }}>
           <PlayersDataGrid
             users={users!.filter(user => user.program === groupFilter)}
           />

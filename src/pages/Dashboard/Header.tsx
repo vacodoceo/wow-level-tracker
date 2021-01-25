@@ -5,7 +5,7 @@ import {
   Grid,
   Tab,
   Tabs,
-  Typography
+  Tooltip
 } from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 
@@ -37,8 +37,8 @@ const Header = ({ users, groupFilter, setGroupFilter }: HeaderProps) => {
   };
 
   return (
-    <Grid container>
-      <Grid item xs={12} md={6}>
+    <Grid container justify="space-between" alignItems="center">
+      <Grid item>
         <Tabs
           value={groupFilter}
           onChange={(e, newValue: string) => setGroupFilter(newValue)}
@@ -48,23 +48,8 @@ const Header = ({ users, groupFilter, setGroupFilter }: HeaderProps) => {
           ))}
         </Tabs>
       </Grid>
-
-      <Grid
-        container
-        xs={12}
-        md={6}
-        justify="flex-end"
-        alignItems="center"
-        spacing={1}
-      >
-        <Grid item xs="auto">
-          <Typography align="center">
-            Última actualización:
-            <br />
-            {lastUpdate}
-          </Typography>
-        </Grid>
-        <Grid item xs="auto">
+      <Grid item>
+        <Tooltip title={`Última actualización: ${lastUpdate}`}>
           <Button
             variant="outlined"
             color="primary"
@@ -77,7 +62,7 @@ const Header = ({ users, groupFilter, setGroupFilter }: HeaderProps) => {
           >
             Actualizar
           </Button>
-        </Grid>
+        </Tooltip>
       </Grid>
     </Grid>
   );
