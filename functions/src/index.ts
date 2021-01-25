@@ -4,9 +4,9 @@ import { getToken, updateAllCharactersData } from "./services";
 const admin = require("firebase-admin");
 admin.initializeApp();
 
-// Get token every 12 hours
+// Get token every 30 minutes
 exports.getNewClientToken = functions.pubsub
-  .schedule("every 12 hours")
+  .schedule("every 30 minutes")
   .onRun(async () => {
     const token = await getToken();
     await admin
@@ -25,7 +25,7 @@ exports.updateAllCharactersData = functions.https.onCall(
 // Trigger character data update if a character is created
 exports.onCharacterCreation = functions.firestore
   .document("users/{userId}")
-  .onUpdate(async change => {
+  .onUpdate(async (change) => {
     const previousCharacters = change.before.data().characters;
     const newCharacters = change.after.data().characters;
 
